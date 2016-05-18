@@ -29,10 +29,10 @@ namespace RestService
         public String company;
 
         [DataMember(Name = "order_date", Order = 1)]
-        public DateTime order_date;
+        public string order_date;
 
         [DataMember(Name = "execution_date", Order = 1)]
-        public DateTime execution_date;
+        public string execution_date;
 
         [DataMember(Name = "share_value", Order = 1)]
         public double share_value;
@@ -50,8 +50,8 @@ namespace RestService
             client = (long)reader["client"];
             type = (long)reader["type"];
             company = (string) reader["company"];
-            order_date = DateTime.Parse((string)reader["order_date"]);
-            execution_date = DateTime.Parse((string)reader["execution_date"]);
+            order_date = (string)reader["order_date"];
+            execution_date = (string)reader["execution_date"];
             share_value = (double) reader["share_value"];
             total_value = (double) reader["total_value"];
             executed = ((long)reader["executed"]) > 0;

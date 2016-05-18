@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SQLite;
+using System.Globalization;
 
 namespace RestService
 {
@@ -55,6 +56,19 @@ namespace RestService
                 orders.Add(new Order(reader));
             }
             return orders;
+        }
+
+        public Order ExecuteOrder(string order_id)
+        {
+            Order order = GetOrder(order_id);
+
+            order.executed = true;
+            order.execution_date = DateTime.Now.ToString(new CultureInfo("en-GB"));
+
+            order.update(db_conn);
+    
+            return order;
+
         }
 
         //-------------- USERS -------------------//
