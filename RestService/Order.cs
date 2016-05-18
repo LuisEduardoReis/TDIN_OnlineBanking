@@ -22,6 +22,9 @@ namespace RestService
         [DataMember(Name = "type", Order = 1)]
         public long type;
 
+        [DataMember(Name = "quantity", Order = 1)]
+        public long quantity;
+
         [DataMember(Name = "company", Order = 1)]
         public String company;
 
@@ -54,18 +57,20 @@ namespace RestService
             executed = ((long)reader["executed"]) > 0;
         }
 
+
+
         public void create(SQLiteConnection conn) {
-            SQLiteCommand command = new SQLiteCommand("INSERT INTO Orders(client,type,company,order_date,execution_date,share_value,total_value) " + 
-                "VALUES(@client,@type,@company,@order_date,@execution_date,@share_value,@total_value)",conn);
+            SQLiteCommand command = new SQLiteCommand("INSERT INTO Orders(client,type,quantity, company,order_date,execution_date,share_value,total_value) " + 
+                "VALUES(@client,@type,@quantity, @company,@order_date,@execution_date,@share_value,@total_value)",conn);
             command.Parameters.AddWithValue("@client",client);
             command.Parameters.AddWithValue("@type",type);
+            command.Parameters.AddWithValue("@quantity", quantity);
             command.Parameters.AddWithValue("@company", company);
             command.Parameters.AddWithValue("@order_date", order_date);
             command.Parameters.AddWithValue("@execution_date", execution_date);
             command.Parameters.AddWithValue("@share_value", share_value);
             command.Parameters.AddWithValue("@total_value",total_value);
-            
-
+           
             command.ExecuteNonQuery();
         }
         public void update(SQLiteConnection conn) {
