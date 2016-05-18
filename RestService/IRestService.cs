@@ -9,16 +9,15 @@ namespace RestService
     [ServiceContract]
     public interface IRestService {
 
-        [WebGet(UriTemplate = "/users", ResponseFormat = WebMessageFormat.Json)]
-        [Description("Gets all users stored so far.")]
+        [WebGet(UriTemplate = "/clients", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets all clients stored so far.")]
         [OperationContract]
-        Users GetUsers();
+        Clients GetClients();
 
-        /*
-        [WebGet(UriTemplate = "/users/{id}", ResponseFormat = WebMessageFormat.Json)]
-        [Description("Gets one user by id.")]
+        [WebGet(UriTemplate = "/clients/{id}", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets one client by id.")]
         [OperationContract]
-        User GetUser(string id);*/
+        Client GetClient(string id);
 
         [WebGet(UriTemplate = "/orders", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets all orders stored so far.")]
@@ -37,23 +36,16 @@ namespace RestService
         void AddOrder(Order order);
 
     
-        [WebGet(UriTemplate = "/users/{client_id}/orders/{order_by_date=true}", ResponseFormat = WebMessageFormat.Json)]
+        [WebGet(UriTemplate = "/clients/{client_id}/orders/{order_by_date=true}", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets users' orders by user id.")]
         [OperationContract]
-        Orders GetUserOrders(string client_id, string order_by_date);
+        Orders GetClientOrders(string client_id, string order_by_date);
 
 
 
 
     }
 
-    [CollectionDataContract(Name="users", Namespace="")]
-    public class Users : List<User> {
-    }
-
-    [DataContract(Name="user", Namespace="")]
-    public class User {
-    }
 
     
 

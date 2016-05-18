@@ -5,7 +5,7 @@ namespace RestService
 {
     public class RestService : IRestService
     {
-        static Users users = new Users();
+
         SQLiteConnection db_conn;
 
         public RestService() {
@@ -46,12 +46,19 @@ namespace RestService
         }
 
         //-------------- USERS -------------------//
-
-        public Users GetUsers() {
-            return users;            
+    
+        public Clients GetClients() {
+            Clients clients = new Clients();
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM Clients", db_conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                clients.Add(new Client(reader));
+            }
+            return clients;
         }
 
-        public Orders GetUserOrders(string client_id, string order_by_date)
+        public Orders GetClientOrders(string client_id, string order_by_date)
         {
             Orders orders = new Orders();
 
@@ -72,9 +79,16 @@ namespace RestService
         }
 
 
-        //public User GetUser(string id)
+        public Client GetClient(string id)
+        {
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM Clients WHERE id = @id", db_conn);
+            command.Parameters.AddWithValue("@id", Int32.Parse(id));
 
+            SQLiteDataReader reader = command.ExecuteReader();
 
+            return new Client(reader);
+        }
 
+      
     }
 }
