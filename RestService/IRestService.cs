@@ -19,6 +19,17 @@ namespace RestService
         [OperationContract]
         Orders GetOrders();
 
+        [WebGet(UriTemplate = "/orders/{id}", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets one order by id.")]
+        [OperationContract]
+        Order GetOrder(string id);
+
+
+        [WebInvoke(Method = "POST", UriTemplate = "/orders", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        [Description("Adds one order.")]
+        [OperationContract]
+        void AddOrder(Order order);
+
     }
 
     [CollectionDataContract(Name="users", Namespace="")]

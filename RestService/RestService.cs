@@ -13,6 +13,8 @@ namespace RestService
             db_conn.Open();
         }
 
+        //-------------- ORDERS -------------------//
+
         public Orders GetOrders()
         {
             Orders orders = new Orders();
@@ -24,6 +26,26 @@ namespace RestService
             }
             return orders;
         }
+
+        public void AddOrder(Order order)
+        {
+
+            order.create(db_conn);
+
+        }
+
+        public Order GetOrder(string id)
+        {
+           
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders WHERE id = @id", db_conn);
+            command.Parameters.AddWithValue("@id", Int32.Parse(id));
+
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            return new Order(reader);
+        }
+
+        //-------------- USERS -------------------//
 
         public Users GetUsers() {
             return users;            
