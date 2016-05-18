@@ -35,7 +35,12 @@ namespace RestService
         [OperationContract]
         void AddOrder(Order order);
 
-    
+        [WebGet(UriTemplate = "/orders/non_executed", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets all non executed orders stored so far.")]
+        [OperationContract]
+        Orders GetNonExecutedOrders();
+
+
         [WebGet(UriTemplate = "/clients/{client_id}/orders/{order_by_date=true}", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets users' orders by user id.")]
         [OperationContract]
