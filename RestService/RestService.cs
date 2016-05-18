@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SQLite;
+using System.Globalization;
 
 namespace RestService
 {
@@ -45,8 +46,33 @@ namespace RestService
             return new Order(reader);
         }
 
-        //-------------- USERS -------------------//
+        public Orders GetNonExecutedOrders()
+        {
+            Orders orders = new Orders();
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders WHERE executed=0 ORDER BY order_date DESC", db_conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                orders.Add(new Order(reader));
+            }
+            return orders;
+        }
+
+        public Order ExecuteOrder(string order_id)
+        {
+            Order order = GetOrder(order_id);
+
+            order.executed = true;
+            order.execution_date = DateTime.Now.ToString(new CultureInfo("en-GB"));
+
+            order.update(db_conn);
     
+            return order;
+
+        }
+
+        //-------------- USERS -------------------//
+
         public Clients GetClients() {
             Clients clients = new Clients();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Clients", db_conn);
