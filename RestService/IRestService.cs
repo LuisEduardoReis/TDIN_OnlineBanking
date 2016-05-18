@@ -14,10 +14,11 @@ namespace RestService
         [OperationContract]
         Users GetUsers();
 
+        /*
         [WebGet(UriTemplate = "/users/{id}", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets one user by id.")]
         [OperationContract]
-        User GetUser(string id);
+        User GetUser(string id);*/
 
         [WebGet(UriTemplate = "/orders", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets all orders stored so far.")]

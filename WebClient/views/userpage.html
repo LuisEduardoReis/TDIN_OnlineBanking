@@ -1,2 +1,22 @@
 User: {{user_id}}
 
+<table>
+<tr>
+<th>Company</th>
+<th>Quantity</th>
+<th>Executed</th>
+<th>Execution Date</th>
+<th>Order Date</th>
+<th>Share Value</th>
+<th>Total Value</th>
+</tr>
+<tr ng-repeat="order in orders">
+<td>{{order.company}}</td>
+<td>{{order.quantity}}</td>
+<td>{{order.executed ? "yes" : "no"}}</td>
+<td>{{order.executed ? Date.parse(order.execution_date) : "-"}}</td>
+<td>{{Date.parse(order.order_date)}}</td>
+<td>{{order.share_value}}</td>
+<td>{{order.total_value}}</td>
+</tr>
+</table>

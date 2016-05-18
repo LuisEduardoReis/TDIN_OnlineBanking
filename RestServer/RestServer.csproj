@@ -44,6 +44,8 @@
     <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BehaviorAttribute.cs" />
+    <Compile Include="MessageInspector.cs" />
     <Compile Include="RestServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -72,7 +72,7 @@ namespace RestService
         }
 
 
-        public User GetUser(string id)
+        //public User GetUser(string id)
 
 
 
