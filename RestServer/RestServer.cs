@@ -11,13 +11,7 @@ class RestHost {
         SQLiteConnection db_conn = new SQLiteConnection("Data Source=RestServer.db;Version=3;");
         db_conn.Open();
 
-        SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders", db_conn);
-        SQLiteDataReader reader = command.ExecuteReader();
-        while (reader.Read()) {
-            Order order = new Order(reader);
-            order.company = "Test";
-            order.update(db_conn);
-        }
+       
 
 
         Console.WriteLine("Rest service running");

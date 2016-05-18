@@ -14,6 +14,11 @@ namespace RestService
         [OperationContract]
         Users GetUsers();
 
+        [WebGet(UriTemplate = "/orders", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets all orders stored so far.")]
+        [OperationContract]
+        Orders GetOrders();
+
     }
 
     [CollectionDataContract(Name="users", Namespace="")]
@@ -23,4 +28,6 @@ namespace RestService
     [DataContract(Name="user", Namespace="")]
     public class User {
     }
+
+    
 }

@@ -1,17 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Runtime.Serialization;
 
 namespace RestService
 {
+    [CollectionDataContract(Name = "orders", Namespace = "")]
+    public class Orders : List<Order>
+    {
+    }
+
+    [DataContract(Name = "order", Namespace = "")]
     public class Order
     {
+        [DataMember(Name = "id", Order = 1)]
         public long id;
+
+        [DataMember(Name = "client", Order = 1)]
         public long client;
+
+        [DataMember(Name = "type", Order = 1)]
         public long type;
+
+        [DataMember(Name = "company", Order = 1)]
         public String company;
+
+        [DataMember(Name = "order_date", Order = 1)]
         public DateTime order_date;
+
+        [DataMember(Name = "execution_date", Order = 1)]
         public DateTime execution_date;
+
+        [DataMember(Name = "share_value", Order = 1)]
         public double share_value;
+
+        [DataMember(Name = "total_value", Order = 1)]
         public double total_value;
 
         public Order() {}
