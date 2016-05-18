@@ -25,7 +25,14 @@ app.controller('UserCtrl', function($scope, $routeParams, $http) {
 	
 	$http({
 		method: 'GET',
-		url: 'http://'+window.location.hostname+':8085/users/'+$scope.user_id+'/orders'
+		url: 'http://'+window.location.hostname+':8085/clients/'+$scope.user_id
+	}).success(function(res) {
+		$scope.user = res;
+	});
+	
+	$http({
+		method: 'GET',
+		url: 'http://'+window.location.hostname+':8085/clients/'+$scope.user_id+'/orders'
 	}).success(function(res) {
 		$scope.orders = res;
 	});
