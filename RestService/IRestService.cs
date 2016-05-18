@@ -14,6 +14,11 @@ namespace RestService
         [OperationContract]
         Users GetUsers();
 
+        [WebGet(UriTemplate = "/users/{id}", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets one user by id.")]
+        [OperationContract]
+        User GetUser(string id);
+
         [WebGet(UriTemplate = "/orders", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets all orders stored so far.")]
         [OperationContract]
@@ -30,6 +35,15 @@ namespace RestService
         [OperationContract]
         void AddOrder(Order order);
 
+    
+        [WebGet(UriTemplate = "/users/{client_id}/orders/{order_by_date=true}", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets users' orders by user id.")]
+        [OperationContract]
+        Orders GetUserOrders(string client_id, string order_by_date);
+
+
+
+
     }
 
     [CollectionDataContract(Name="users", Namespace="")]
@@ -41,4 +55,5 @@ namespace RestService
     }
 
     
+
 }
