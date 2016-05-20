@@ -9,7 +9,8 @@ namespace RestService
 
         SQLiteConnection db_conn;
 
-        public RestService() {
+        public RestService()
+        {
             db_conn = new SQLiteConnection("Data Source=RestServer.db;Version=3;");
             db_conn.Open();
         }
@@ -21,23 +22,22 @@ namespace RestService
             Orders orders = new Orders();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                orders.Add(new Order(reader));
-            }
+            while (reader.Read()) orders.Add(new Order(reader));
+          
             return orders;
         }
 
         public void AddOrder(Order order)
         {
-
+            order.order_date = DateTime.Now.ToString(new CultureInfo("en-GB"));
+            order.execution_date = "";
+            order.share_value = 0;
+            order.total_value = 0;
             order.create(db_conn);
-
         }
 
         public Order GetOrder(string id)
-        {
-           
+        {           
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders WHERE id = @id", db_conn);
             command.Parameters.AddWithValue("@id", Int32.Parse(id));
 
@@ -51,10 +51,7 @@ namespace RestService
             Orders orders = new Orders();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders WHERE executed=0 ORDER BY order_date DESC", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                orders.Add(new Order(reader));
-            }
+            while (reader.Read()) orders.Add(new Order(reader));
             return orders;
         }
 
@@ -68,7 +65,6 @@ namespace RestService
             order.update(db_conn);
     
             return order;
-
         }
 
         //-------------- USERS -------------------//
@@ -97,10 +93,8 @@ namespace RestService
             command.Parameters.AddWithValue("@client", Int32.Parse(client_id));
 
             SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                orders.Add(new Order(reader));
-            }
+            while (reader.Read()) orders.Add(new Order(reader));
+
             return orders;
         }
 
@@ -115,6 +109,17 @@ namespace RestService
             return new Client(reader);
         }
 
-      
+        // ------------ COMPANIES ------------------
+
+        public Companies GetCompanies()
+        {
+            Companies companies = new Companies();
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM Companies", db_conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read()) companies.Add(new Company(reader));
+            
+
+            return companies;
+        }
     }
 }

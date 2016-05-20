@@ -26,7 +26,7 @@ namespace RestService
         public long quantity;
 
         [DataMember(Name = "company", Order = 1)]
-        public String company;
+        public long company;
 
         [DataMember(Name = "order_date", Order = 1)]
         public string order_date;
@@ -49,9 +49,10 @@ namespace RestService
             id = (long) reader["id"];
             client = (long)reader["client"];
             type = (long)reader["type"];
-            company = (string) reader["company"];
+            quantity = (long)reader["quantity"];
+            company = (long) reader["company"];
             order_date = (string)reader["order_date"];
-            execution_date = (string)reader["execution_date"];
+            execution_date = (string) reader["execution_date"];
             share_value = (double) reader["share_value"];
             total_value = (double) reader["total_value"];
             executed = ((long)reader["executed"]) > 0;
@@ -75,10 +76,11 @@ namespace RestService
         }
         public void update(SQLiteConnection conn) {
             SQLiteCommand command = new SQLiteCommand(
-                "UPDATE Orders SET client=@client, type=@type, company=@company, order_date=@order_date, execution_date=@execution_date, share_value=@share_value, total_value=@total_value, executed=@executed " +
+                "UPDATE Orders SET client=@client, type=@type, quantity=@quantity, company=@company, order_date=@order_date, execution_date=@execution_date, share_value=@share_value, total_value=@total_value, executed=@executed " +
                 "WHERE id=@id", conn);
             command.Parameters.AddWithValue("@client", client);
             command.Parameters.AddWithValue("@type", type);
+            command.Parameters.AddWithValue("@quantity", quantity);
             command.Parameters.AddWithValue("@company", company);
             command.Parameters.AddWithValue("@order_date", order_date);
             command.Parameters.AddWithValue("@execution_date", execution_date);

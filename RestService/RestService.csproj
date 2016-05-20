@@ -47,6 +47,7 @@
     <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Company.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="RestService.cs" />
     <Compile Include="IRestService.cs" />

@@ -45,14 +45,15 @@ namespace RestService
         [OperationContract]
         Order ExecuteOrder(string order_id);
 
-
         [WebGet(UriTemplate = "/clients/{client_id}/orders/{order_by_date=true}", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets users' orders by user id.")]
         [OperationContract]
         Orders GetClientOrders(string client_id, string order_by_date);
 
-
-
+        [WebGet(UriTemplate = "/companies", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Gets all valid companies.")]
+        [OperationContract]
+        Companies GetCompanies();
 
     }
 

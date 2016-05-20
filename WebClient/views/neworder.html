@@ -1,0 +1,11 @@
+
+<a ng-href="#/userpage/{{user_id}}">Back</a>
+
+<form ng-submit="submitForm()">
+	Quantity: <input type="number" ng-model="order.quantity"/><br>
+	Company: <select ng-options="company.id as company.name for company in companies" ng-model="order.company"></select><br>
+	Type: <select ng-options="type.id as type.label for type in types" ng-model="order.type"></select><br>
+	<br>
+	{{order}}<br>
+	<button type="submit" ng-click="submitOrder()">Submit</button>
+</form>
