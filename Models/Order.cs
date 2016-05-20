@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Runtime.Serialization;
 
-namespace RestService
+namespace Models
 {
     [CollectionDataContract(Name = "orders", Namespace = "")]
     public class Orders : List<Order>

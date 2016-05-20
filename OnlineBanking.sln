@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestServer", "RestServer\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestService", "RestService\RestService.csproj", "{C70ECCAE-BAC9-4789-8C88-902C908ED348}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingDepartment", "BankingDepartment\BankingDepartment.csproj", "{F0FC578F-C484-4672-BC70-F1ADCB305DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{0858DD23-301C-4AE1-B5DE-AC31561E80FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C70ECCAE-BAC9-4789-8C88-902C908ED348}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C70ECCAE-BAC9-4789-8C88-902C908ED348}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C70ECCAE-BAC9-4789-8C88-902C908ED348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0FC578F-C484-4672-BC70-F1ADCB305DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0FC578F-C484-4672-BC70-F1ADCB305DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0FC578F-C484-4672-BC70-F1ADCB305DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0FC578F-C484-4672-BC70-F1ADCB305DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0858DD23-301C-4AE1-B5DE-AC31561E80FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0858DD23-301C-4AE1-B5DE-AC31561E80FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0858DD23-301C-4AE1-B5DE-AC31561E80FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0858DD23-301C-4AE1-B5DE-AC31561E80FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

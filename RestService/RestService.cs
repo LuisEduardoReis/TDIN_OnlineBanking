@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Models;
+using RestService.BankingDepartment;
+using System;
 using System.Data.SQLite;
 using System.Globalization;
 using System.ServiceModel.Web;
+
 
 namespace RestService
 {
@@ -9,11 +12,14 @@ namespace RestService
     {
 
         SQLiteConnection db_conn;
+        BankingDepartmentClient bankingDepartment;
 
         public RestService()
         {
             db_conn = new SQLiteConnection("Data Source=RestServer.db;Version=3;");
             db_conn.Open();
+
+            bankingDepartment = new BankingDepartmentClient();
         }
 
         //-------------- ORDERS -------------------//
@@ -35,6 +41,8 @@ namespace RestService
             order.share_value = 0;
             order.total_value = 0;
             order.create(db_conn);
+
+            bankingDepartment.newOrder(order);
         }
 
         public Order GetOrder(string id)

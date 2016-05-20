@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestService
+namespace Models
 {
     [CollectionDataContract(Name = "companies", Namespace = "")]
     public class Companies : List<Company>
