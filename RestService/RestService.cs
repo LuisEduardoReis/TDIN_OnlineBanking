@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.Globalization;
+using System.ServiceModel.Web;
 
 namespace RestService
 {
@@ -77,6 +78,9 @@ namespace RestService
             {
                 clients.Add(new Client(reader));
             }
+
+            setResponseCode(System.Net.HttpStatusCode.Accepted);
+           
             return clients;
         }
 
@@ -121,5 +125,15 @@ namespace RestService
 
             return companies;
         }
+
+        //---------------------------//
+
+        public void setResponseCode(System.Net.HttpStatusCode code)
+        {
+            WebOperationContext ctx = WebOperationContext.Current;
+            ctx.OutgoingResponse.StatusCode = code;
+        }
+
+
     }
 }

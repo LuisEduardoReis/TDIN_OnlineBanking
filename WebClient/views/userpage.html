@@ -17,8 +17,8 @@ Hello {{user.name}}!
 		<td>{{companies[order.company]}}</td>
 		<td>{{order.quantity}}</td>
 		<td>{{order.executed ? "yes" : "no"}}</td>
-		<td>{{order.executed ? Date.parse(order.execution_date) : "-"}}</td>
-		<td>{{Date.parse(order.order_date)}}</td>
+		<td>{{order.executed ? order.execution_date : "-"}}</td>
+		<td>{{order.order_date}}</td>
 		<td>{{order.share_value}}</td>
 		<td>{{order.total_value}}</td>
 	</tr>
