@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Configuration;
 using System.ServiceModel;
+using System.Windows.Forms;
 
 namespace BankingDepartment
 {
@@ -11,15 +13,19 @@ namespace BankingDepartment
         [STAThread]
         static void Main()
         {
-            ServiceHost host = new ServiceHost(typeof(BankingDepartment));
+            BankingDepartment instance = new BankingDepartment();
+            ServiceHost host = new ServiceHost(instance);
             host.Open();
-            Console.WriteLine("Banking Department Active. Press <Enter> to close.");
-            Console.ReadLine();
-            host.Close();
-            /*
+            Console.WriteLine("Host open");  
+
+            String hostUrl = ConfigurationManager.AppSettings["HostUrl"];
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());*/
+            Application.Run(new BankingDepartmentForm(instance, hostUrl));
+
+            host.Close();
+            Console.WriteLine("Host closed");
         }
     }
 }

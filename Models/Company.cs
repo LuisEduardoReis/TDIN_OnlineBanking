@@ -22,7 +22,7 @@ namespace Models
         [DataMember(Name = "name", Order = 1)]
         public string name;
 
-
+        public Company() {}
         public Company(SQLiteDataReader reader)
         {
             id = (long)reader["id"];

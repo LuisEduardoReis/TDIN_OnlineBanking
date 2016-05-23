@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace BankingDepartment
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class BankingDepartment : IBankingDepartment
     {
         [OperationBehavior(TransactionScopeRequired = true)]
@@ -16,9 +13,13 @@ namespace BankingDepartment
             Console.WriteLine(message);
         }
 
+        public delegate void OrderEvent(Order order);
+        public OrderEvent NewOrder;
+
+        [OperationBehavior(TransactionScopeRequired = true)]
         public void newOrder(Order order)
         {
-            Console.WriteLine("New Order!");
+            NewOrder(order);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Models
         [DataMember(Name = "email", Order = 1)]
         public string email;
 
-
+        public Client() { }
         public Client(SQLiteDataReader reader)
         {
             id = (long)reader["id"];

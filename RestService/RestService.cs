@@ -82,12 +82,9 @@ namespace RestService
             Clients clients = new Clients();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Clients", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                clients.Add(new Client(reader));
-            }
+            while (reader.Read()) clients.Add(new Client(reader));            
 
-            setResponseCode(System.Net.HttpStatusCode.Accepted);
+            setResponseCode(System.Net.HttpStatusCode.OK);
            
             return clients;
         }
@@ -130,7 +127,6 @@ namespace RestService
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read()) companies.Add(new Company(reader));
             
-
             return companies;
         }
 
