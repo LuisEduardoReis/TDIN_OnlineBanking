@@ -24,7 +24,7 @@ namespace BankingDepartment
 
             instance.NewOrder += this.NewOrder;
             this.hostUrl = hostUrl;
-            
+
             string res;
 
             // Get companies
@@ -40,19 +40,19 @@ namespace BankingDepartment
             if (res != null)
                 foreach (Client client in JsonConvert.DeserializeObject<List<Client>>(res))
                     clients.Add(client.id, client);
-            
+
             // DB
             db_conn = new SQLiteConnection("Data Source=BankingDepartment.db;Version=3;");
             db_conn.Open();
 
-       
-            RefreshView();            
+
+            RefreshView();
         }
 
         private void NewOrder(Order order)
         {
             order.create(db_conn);
-            
+
             BeginInvoke((Action)(() => {
                 RefreshView();
             }));
@@ -62,31 +62,45 @@ namespace BankingDepartment
         {
             orderViewListBox.Items.Clear();
             SQLiteDataReader reader = new SQLiteCommand("SELECT * FROM Orders", db_conn).ExecuteReader();
-            orderViewListBox.FormattingEnabled = true;
-            orderViewListBox.HorizontalScrollbar = true;
-            orderViewListBox.Items.AddRange(new object[] { "Cliente", "Type", "Company", "Quantity" });
+
             while (reader.Read()) {
-                Order order = new Order(reader);
-                orderViewListBox.Items.AddRange(new object[] {
-                    (clients.ContainsKey(order.client) ? clients[order.client].name : order.client + ""),
-                     (order.type == 0 ? "Buy" : "Sell"),
-                     (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + ""),
-                     order.quantity,
-                });
-
-
-
-                /*String order_str = (clients.ContainsKey(order.client) ? clients[order.client].name : order.client + "") + " - ";
-                    order_str += (order.type == 0 ? "Buy" : "Sell") + " - ";
-                    order_str += (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
-                    order_str += order.quantity;
-*/
-
-                //orderViewListBox.Items.Add(order_str);
                 
+                Order order = new Order(reader);
+                
+                String order_str = (clients.ContainsKey(order.client) ? clients[order.client].name : order.client + "") + " - ";
+                order_str += (order.type == 0 ? "Buy" : "Sell") + " - ";
+                order_str += (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
+                order_str += order.quantity;
+             
+                orderViewListBox.Items.Add(new DisplayOrder(order.id, order_str));
+
             }
-            orderViewListBox.MultiColumn = true;
-            orderViewListBox.ColumnWidth = 85;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(((DisplayOrder)orderViewListBox.SelectedItem).Id.ToString());
+            //TODO execute selected order with value
+
         }
     }
+
+
+    class DisplayOrder{
+        public long Id;
+        public String Order_str;
+
+        public DisplayOrder(long id, String order_str)
+        {
+            this.Id = id;
+            this.Order_str = order_str;
+        }
+
+        public override string ToString()
+        {
+            return Order_str;
+        }
+
+     }
 }
