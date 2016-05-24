@@ -92,7 +92,18 @@ namespace Models
             command.ExecuteNonQuery();
         }
 
+        public static void delete(SQLiteConnection conn, long id) {
+            SQLiteCommand command = new SQLiteCommand("DELETE FROM Orders WHERE id=@id",conn);
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+        }
 
+       /*public override string ToString()
+        {
+            return client +"-"+ (type == 0 ? "Buy" : "Sell") + " - " + 
+                    (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
+                    order_str += order.quantity;
+        }*/
     }
 
    
