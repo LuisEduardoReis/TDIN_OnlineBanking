@@ -64,7 +64,7 @@ namespace RestService
             return orders;
         }
 
-        public Order ExecuteOrder(string order_id)
+        public Order ExecuteOrder(string order_id, double value)
         {
             Order order = GetOrder(order_id);
 
