@@ -62,14 +62,31 @@ namespace BankingDepartment
         {
             orderViewListBox.Items.Clear();
             SQLiteDataReader reader = new SQLiteCommand("SELECT * FROM Orders", db_conn).ExecuteReader();
+            orderViewListBox.FormattingEnabled = true;
+            orderViewListBox.HorizontalScrollbar = true;
+            orderViewListBox.Items.AddRange(new object[] { "Cliente", "Type", "Company", "Quantity" });
             while (reader.Read()) {
                 Order order = new Order(reader);
-                String order_str = (clients.ContainsKey(order.client) ? clients[order.client].name : order.client + "") + " - ";
+                orderViewListBox.Items.AddRange(new object[] {
+                    (clients.ContainsKey(order.client) ? clients[order.client].name : order.client + ""),
+                     (order.type == 0 ? "Buy" : "Sell"),
+                     (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + ""),
+                     order.quantity,
+                });
+
+
+
+                /*String order_str = (clients.ContainsKey(order.client) ? clients[order.client].name : order.client + "") + " - ";
                     order_str += (order.type == 0 ? "Buy" : "Sell") + " - ";
                     order_str += (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
                     order_str += order.quantity;
-                orderViewListBox.Items.Add(order_str);
+*/
+
+                //orderViewListBox.Items.Add(order_str);
+                
             }
+            orderViewListBox.MultiColumn = true;
+            orderViewListBox.ColumnWidth = 85;
         }
     }
 }
