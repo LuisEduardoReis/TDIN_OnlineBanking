@@ -64,12 +64,14 @@ namespace RestService
             return orders;
         }
 
-        public Order ExecuteOrder(string order_id)
+        public Order ExecuteOrder(string order_id, double value)
         {
             Order order = GetOrder(order_id);
 
             order.executed = true;
             order.execution_date = DateTime.Now.ToString(new CultureInfo("en-GB"));
+            order.share_value = value;
+            order.total_value = order.quantity * order.share_value;
 
             order.update(db_conn);
     

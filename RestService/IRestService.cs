@@ -44,7 +44,7 @@ namespace RestService
         [WebInvoke(Method = "POST", UriTemplate = "/orders/{order_id}/execute", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         [Description("Execute one order.")]
         [OperationContract]
-        Order ExecuteOrder(string order_id);
+        Order ExecuteOrder(string order_id, double value);
 
         [WebGet(UriTemplate = "/clients/{client_id}/orders/{order_by_date=true}", ResponseFormat = WebMessageFormat.Json)]
         [Description("Gets users' orders by user id.")]
