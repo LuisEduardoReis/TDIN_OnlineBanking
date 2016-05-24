@@ -80,11 +80,14 @@ namespace BankingDepartment
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Sending post...");
-            Util.PostRequest(hostUrl + "/orders/" + ((DisplayOrder)orderViewListBox.SelectedItem).Id.ToString() + "/execute", "10");
-            Console.WriteLine("Deleting order...");
+            try {
+                int i = Int32.Parse(txtValue.Text);
+            } catch (Exception) { return; }
+
+            Console.WriteLine("Sending POST order/{id}/execute");
+            Util.PostRequest(hostUrl + "/orders/" + ((DisplayOrder)orderViewListBox.SelectedItem).Id.ToString() + "/execute", 
+                txtValue.Text);
             Order.delete(db_conn, ((DisplayOrder)orderViewListBox.SelectedItem).Id);
-            Console.WriteLine("Refreshing...");
             RefreshView();
         }
     }
