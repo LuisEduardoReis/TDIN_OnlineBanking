@@ -34,6 +34,38 @@ namespace Models
             return null;
         }
 
+        public static string PostRequest(string url, string body)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.AutomaticDecompression = DecompressionMethods.GZip;
+
+                byte[] byteArray = Encoding.UTF8.GetBytes(body);
+
+                request.Method = "POST";
+                request.ContentType = "application/json";
+                request.ContentLength = byteArray.Length;
+
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+
+                if (response.StatusCode.Equals(HttpStatusCode.OK))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch (WebException e) {
+                Console.WriteLine(e.ToString());
+            }
+
+            return null;
+        }
+
         public static void SendMail(string to, string subject, string body) {
 
             var fromAddress = new MailAddress("tdinfeup1516a2v1@gmail.com", "TDIN_A2V1");

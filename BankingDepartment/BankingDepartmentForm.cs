@@ -80,9 +80,12 @@ namespace BankingDepartment
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(((DisplayOrder)orderViewListBox.SelectedItem).Id.ToString());
-            //TODO execute selected order with value
-
+            Console.WriteLine("Sending post...");
+            Util.PostRequest(hostUrl + "/orders/" + ((DisplayOrder)orderViewListBox.SelectedItem).Id.ToString() + "/execute", "10");
+            Console.WriteLine("Deleting order...");
+            Order.delete(db_conn, ((DisplayOrder)orderViewListBox.SelectedItem).Id);
+            Console.WriteLine("Refreshing...");
+            RefreshView();
         }
     }
 
