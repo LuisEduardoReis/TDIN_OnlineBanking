@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-show="loadCounter<=0">
     <div class="col-sm-8">
         <p>Hello {{user.name}}!</p>
         <a ng-href="#/userpage/{{user_id}}/neworder">New Order</a>
@@ -17,7 +17,7 @@
 </div>
 
 
-<table class="table">
+<table class="table" ng-show="loadCounter<=0">
     <tr>
         <th>Company</th>
         <th>Quantity</th>
@@ -38,3 +38,4 @@
     </tr>
 </table>
 
+<div ng-show="loadCounter>0">Loading...</div>

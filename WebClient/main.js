@@ -26,7 +26,8 @@ app.controller('LoginCtrl', function ($rootScope, $scope) {
 app.controller('UserCtrl', function ($scope, $routeParams, $http) {
 
     $scope.user_id = $routeParams['id'];
-
+	$scope.loadCounter = 3;
+	
     $http({
         method: 'GET',
         url: 'http://' + window.location.hostname + ':8085/companies'
@@ -35,14 +36,15 @@ app.controller('UserCtrl', function ($scope, $routeParams, $http) {
         for (var i = 0; i < res.length; i++) {
             $scope.companies[res[i].id] = res[i].name;
         }
-        console.log($scope.companies);
+		$scope.loadCounter--;
     });
 
     $http({
         method: 'GET',
         url: 'http://' + window.location.hostname + ':8085/clients/' + $scope.user_id
     }).success(function (res) {
-        $scope.user = res;
+        $scope.user = res;		
+		$scope.loadCounter--;
     });
 
     $http({
@@ -50,6 +52,7 @@ app.controller('UserCtrl', function ($scope, $routeParams, $http) {
         url: 'http://' + window.location.hostname + ':8085/clients/' + $scope.user_id + '/orders'
     }).success(function (res) {
         $scope.orders = res;
+		$scope.loadCounter--;
     });
 });
 
@@ -76,12 +79,14 @@ app.controller('NewOrderCtrl', function ($rootScope, $scope, $routeParams, $http
 
         });
     }
+	$scope.loadCounter = 1;
 
     $http({
         method: 'GET',
         url: 'http://' + window.location.hostname + ':8085/companies'
     }).success(function (res) {
         $scope.companies = res;
+		$scope.loadCounter--;
     });
 });
 
