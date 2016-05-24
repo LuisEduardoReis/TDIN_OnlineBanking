@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingDepartment", "Bankin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{0858DD23-301C-4AE1-B5DE-AC31561E80FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter", "Counter\Counter.csproj", "{4D630065-A100-47F8-99EE-BDA6378A1B76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0858DD23-301C-4AE1-B5DE-AC31561E80FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0858DD23-301C-4AE1-B5DE-AC31561E80FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0858DD23-301C-4AE1-B5DE-AC31561E80FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D630065-A100-47F8-99EE-BDA6378A1B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D630065-A100-47F8-99EE-BDA6378A1B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D630065-A100-47F8-99EE-BDA6378A1B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D630065-A100-47F8-99EE-BDA6378A1B76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
