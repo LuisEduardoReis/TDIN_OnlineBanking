@@ -1,26 +1,40 @@
+<div class="row">
+    <div class="col-sm-8">
+        <p>Hello {{user.name}}!</p>
+        <a ng-href="#/userpage/{{user_id}}/neworder">New Order</a>
+    </div>
+    <form>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <select id="filter-order" class="selectpicker form-control">
+                    <option value="1">Todas</option>
+                    <option value="2">Filtrar executadas</option>
+                    <option value="3">Filtrar não executadas</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
 
-Hello {{user.name}}!
 
-<a ng-href="#/userpage/{{user_id}}/neworder">New Order</a>
-
-<table>
-	<tr>
-		<th>Company</th>
-		<th>Quantity</th>
-		<th>Executed</th>
-		<th>Execution Date</th>
-		<th>Order Date</th>
-		<th>Share Value</th>
-		<th>Total Value</th>
-	</tr>
-	<tr ng-repeat="order in orders">
-		<td>{{companies[order.company]}}</td>
-		<td>{{order.quantity}}</td>
-		<td>{{order.executed ? "yes" : "no"}}</td>
-		<td>{{order.executed ? order.execution_date : "-"}}</td>
-		<td>{{order.order_date}}</td>
-		<td>{{order.share_value}}</td>
-		<td>{{order.total_value}}</td>
-	</tr>
+<table class="table">
+    <tr>
+        <th>Company</th>
+        <th>Quantity</th>
+        <th>Executed</th>
+        <th>Execution Date</th>
+        <th>Order Date</th>
+        <th>Share Value</th>
+        <th>Total Value</th>
+    </tr>
+    <tr ng-repeat="order in orders">
+        <td>{{companies[order.company]}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.executed ? "yes" : "no"}}</td>
+        <td>{{order.executed ? order.execution_date : "-"}}</td>
+        <td>{{order.order_date}}</td>
+        <td>{{order.share_value}}</td>
+        <td>{{order.total_value}}</td>
+    </tr>
 </table>
 
