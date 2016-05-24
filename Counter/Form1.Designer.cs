@@ -131,7 +131,7 @@
             // 
             this.lstOrders.Location = new System.Drawing.Point(340, 67);
             this.lstOrders.Name = "lstOrders";
-            this.lstOrders.Size = new System.Drawing.Size(242, 236);
+            this.lstOrders.Size = new System.Drawing.Size(403, 236);
             this.lstOrders.TabIndex = 10;
             this.lstOrders.UseCompatibleStateImageBehavior = false;
             // 
@@ -157,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 341);
+            this.ClientSize = new System.Drawing.Size(757, 341);
             this.Controls.Add(this.lblUserIdError);
             this.Controls.Add(this.btnChangeUser);
             this.Controls.Add(this.lstOrders);
@@ -172,7 +172,7 @@
             this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Counter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

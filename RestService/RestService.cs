@@ -116,6 +116,10 @@ namespace RestService
             command.Parameters.AddWithValue("@id", Int32.Parse(id));
 
             SQLiteDataReader reader = command.ExecuteReader();
+            if (!reader.HasRows) {
+                setResponseCode(System.Net.HttpStatusCode.NotFound);
+                return null;
+            }
 
             return new Client(reader);
         }

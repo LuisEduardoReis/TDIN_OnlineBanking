@@ -28,5 +28,11 @@ namespace Models
             id = (long)reader["id"];
             name = (string)reader["name"];
         }
+
+        public override string ToString()
+        {
+            return name;
+        }
+
     }
 }
