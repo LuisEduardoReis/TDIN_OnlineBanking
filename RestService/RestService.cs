@@ -70,6 +70,8 @@ namespace RestService
 
             order.executed = true;
             order.execution_date = DateTime.Now.ToString(new CultureInfo("en-GB"));
+            order.share_value = value;
+            order.total_value = order.quantity * order.share_value;
 
             order.update(db_conn);
     

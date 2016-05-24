@@ -92,12 +92,6 @@ namespace Models
             command.ExecuteNonQuery();
         }
 
-       /*public override string ToString()
-        {
-            return client +"-"+ (type == 0 ? "Buy" : "Sell") + " - " + 
-                    (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
-                    order_str += order.quantity;
-        }*/
     }
 
    
