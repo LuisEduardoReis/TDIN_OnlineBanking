@@ -66,7 +66,16 @@ namespace RestService
 
         public Order ExecuteOrder(string order_id, double value)
         {
-            Order order = GetOrder(order_id);
+            SQLiteCommand command = new SQLiteCommand(
+                "SELECT Orders.* , Clients.name as 'ClientName', Clients.email as 'ClientEmail', Companies.name as 'CompanyName' "+
+                "FROM(Orders "+
+                    "LEFT JOIN Clients ON Orders.client = Clients.id "+
+                    "LEFT JOIN Companies ON Orders.company = Companies.id "+
+                ") WHERE Orders.id = 1", db_conn);
+            command.Parameters.AddWithValue("@id", Int32.Parse(order_id));
+
+            SQLiteDataReader reader = command.ExecuteReader();
+            Order order = new Order(reader);
 
             order.executed = true;
             order.execution_date = DateTime.Now.ToString(new CultureInfo("en-GB"));
@@ -74,7 +83,13 @@ namespace RestService
             order.total_value = order.quantity * order.share_value;
 
             order.update(db_conn);
-    
+
+           
+            Util.SendMail((string) reader["ClientEmail"], "[TDIN] Order executed",
+                    "Hello " +reader["ClientName"]+ "!\n\n"+
+                    "Your order to " +(order.type==0 ? "buy" : "sell")+ " " + order.quantity + 
+                    " \"" +reader["CompanyName"]+ "\" shares has been executed at " + order.execution_date);
+
             return order;
         }
 
