@@ -71,8 +71,14 @@ namespace Models
             command.Parameters.AddWithValue("@execution_date", execution_date);
             command.Parameters.AddWithValue("@share_value", share_value);
             command.Parameters.AddWithValue("@total_value",total_value);
-           
-            command.ExecuteNonQuery();
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (SQLiteException ex) {
+                Console.WriteLine(ex.ToString());
+            }
         }
         public void update(SQLiteConnection conn) {
             SQLiteCommand command = new SQLiteCommand(

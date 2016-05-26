@@ -41,6 +41,7 @@
             this.lstOrders = new System.Windows.Forms.ListView();
             this.btnChangeUser = new System.Windows.Forms.Button();
             this.lblUserIdError = new System.Windows.Forms.Label();
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -143,7 +144,7 @@
             // 
             // btnChangeUser
             // 
-            this.btnChangeUser.Location = new System.Drawing.Point(313, 10);
+            this.btnChangeUser.Location = new System.Drawing.Point(296, 10);
             this.btnChangeUser.Name = "btnChangeUser";
             this.btnChangeUser.Size = new System.Drawing.Size(75, 20);
             this.btnChangeUser.TabIndex = 11;
@@ -159,11 +160,22 @@
             this.lblUserIdError.Size = new System.Drawing.Size(0, 13);
             this.lblUserIdError.TabIndex = 12;
             // 
+            // refreshBtn
+            // 
+            this.refreshBtn.Location = new System.Drawing.Point(668, 41);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(75, 20);
+            this.refreshBtn.TabIndex = 13;
+            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 341);
+            this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.lblUserIdError);
             this.Controls.Add(this.btnChangeUser);
             this.Controls.Add(this.lstOrders);
@@ -200,6 +212,7 @@
         private System.Windows.Forms.ListView lstOrders;
         private System.Windows.Forms.Button btnChangeUser;
         private System.Windows.Forms.Label lblUserIdError;
+        private System.Windows.Forms.Button refreshBtn;
     }
 }
 

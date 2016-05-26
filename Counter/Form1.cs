@@ -76,8 +76,6 @@ namespace Counter
                 cmbType.SelectedIndex = 0;
 
                 refreshOrdersView();
-
-
             }
 
 
@@ -111,6 +109,11 @@ namespace Counter
 
                 }
 
+        }
+
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            refreshOrdersView();
         }
     }
 }
