@@ -88,7 +88,7 @@ namespace Counter
 
             Util.PostRequest(hostUrl + "/orders", post_body);
            
-            //refreshOrdersView();
+            refreshOrdersView();
         }
 
         private void refreshOrdersView()

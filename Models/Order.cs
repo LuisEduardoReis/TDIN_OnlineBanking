@@ -75,6 +75,7 @@ namespace Models
             try
             {
                 command.ExecuteNonQuery();
+                conn.Close();
             }
             catch (SQLiteException ex) {
                 Console.WriteLine(ex.ToString());
@@ -96,12 +97,14 @@ namespace Models
             command.Parameters.AddWithValue("@executed", executed ? 1 : 0);
 
             command.ExecuteNonQuery();
+            conn.Close();
         }
 
         public static void delete(SQLiteConnection conn, long id) {
             SQLiteCommand command = new SQLiteCommand("DELETE FROM Orders WHERE id=@id",conn);
             command.Parameters.AddWithValue("@id", id);
             command.ExecuteNonQuery();
+            conn.Close();
         }
 
        /*public override string ToString()

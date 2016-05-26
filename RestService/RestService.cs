@@ -30,7 +30,8 @@ namespace RestService
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read()) orders.Add(new Order(reader));
-          
+            db_conn.Close();
+
             return orders;
         }
 
@@ -52,7 +53,9 @@ namespace RestService
 
             SQLiteDataReader reader = command.ExecuteReader();
 
-            return new Order(reader);
+            Order order = new Order(reader);
+            db_conn.Close();
+            return order;
         }
 
         public Orders GetNonExecutedOrders()
@@ -61,6 +64,7 @@ namespace RestService
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders WHERE executed=0 ORDER BY order_date DESC", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read()) orders.Add(new Order(reader));
+            db_conn.Close();
             return orders;
         }
 
@@ -76,6 +80,7 @@ namespace RestService
 
             SQLiteDataReader reader = command.ExecuteReader();
             Order order = new Order(reader);
+            db_conn.Close();
 
             order.executed = true;
             order.execution_date = DateTime.Now.ToString(new CultureInfo("en-GB"));
@@ -99,6 +104,7 @@ namespace RestService
             Clients clients = new Clients();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Clients", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
+            db_conn.Close();
             while (reader.Read()) clients.Add(new Client(reader));            
 
             setResponseCode(System.Net.HttpStatusCode.OK);
@@ -120,6 +126,7 @@ namespace RestService
 
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read()) orders.Add(new Order(reader));
+            db_conn.Close();
 
             return orders;
         }
@@ -131,12 +138,15 @@ namespace RestService
             command.Parameters.AddWithValue("@id", Int32.Parse(id));
 
             SQLiteDataReader reader = command.ExecuteReader();
+            
             if (!reader.HasRows) {
                 setResponseCode(System.Net.HttpStatusCode.NotFound);
                 return null;
             }
 
-            return new Client(reader);
+            Client client = new Client(reader);
+            db_conn.Close();
+            return client;
         }
 
         // ------------ COMPANIES ------------------
@@ -147,7 +157,8 @@ namespace RestService
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Companies", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read()) companies.Add(new Company(reader));
-            
+            db_conn.Close();
+
             return companies;
         }
 
