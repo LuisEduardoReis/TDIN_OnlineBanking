@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserId = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNewOrder = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,14 +59,15 @@
             this.txtUserId.Size = new System.Drawing.Size(201, 20);
             this.txtUserId.TabIndex = 1;
             // 
-            // button1
+            // btnNewOrder
             // 
-            this.button1.Location = new System.Drawing.Point(145, 227);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "New order";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Location = new System.Drawing.Point(145, 227);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnNewOrder.TabIndex = 2;
+            this.btnNewOrder.Text = "New order";
+            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
             // label2
             // 
@@ -129,11 +130,16 @@
             // 
             // lstOrders
             // 
+            this.lstOrders.AutoArrange = false;
+            this.lstOrders.FullRowSelect = true;
             this.lstOrders.Location = new System.Drawing.Point(340, 67);
+            this.lstOrders.MultiSelect = false;
             this.lstOrders.Name = "lstOrders";
+            this.lstOrders.ShowGroups = false;
             this.lstOrders.Size = new System.Drawing.Size(403, 236);
             this.lstOrders.TabIndex = 10;
             this.lstOrders.UseCompatibleStateImageBehavior = false;
+            this.lstOrders.View = System.Windows.Forms.View.List;
             // 
             // btnChangeUser
             // 
@@ -168,7 +174,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -183,7 +189,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUserId;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

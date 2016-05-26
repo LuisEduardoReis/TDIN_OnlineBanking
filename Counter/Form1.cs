@@ -75,22 +75,41 @@ namespace Counter
                 cmbCompany.SelectedIndex = 0;
                 cmbType.SelectedIndex = 0;
 
+                refreshOrdersView();
 
-                //Get client's orders
-                String orders = Util.GetRequest(hostUrl + "/clients/" + current_user+"/orders");
-                if (orders != null)
-                    foreach (Order order in JsonConvert.DeserializeObject<List<Order>>(orders))
-                    {
-                        String order_str = (order.type == 0 ? "Buy" : "Sell") + " - ";
-                        order_str += (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
-                        order_str += order.quantity;
-                        
-                        lstOrders.Items.Add(new ListViewItem(order_str, 1));
-                        
-                    }
+
             }
 
 
+
+        }
+
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            string post_body = "{\"client\":"+txtUserId.Text+ " ,\"company\":"+((Company)cmbCompany.SelectedItem).id+",\"quantity\":"+txtQuantity.Text+",\"type\":"+((OrderType)cmbType.SelectedItem).value+"}";
+
+            Util.PostRequest(hostUrl + "/orders", post_body);
+           
+            //refreshOrdersView();
+        }
+
+        private void refreshOrdersView()
+        {
+            lstOrders.Clear();
+
+            //Get client's orders
+            lstOrders.Items.Add(new ListViewItem("Type - Company - Quantity"));
+            String orders = Util.GetRequest(hostUrl + "/clients/" + current_user + "/orders");
+            if (orders != null)
+                foreach (Order order in JsonConvert.DeserializeObject<List<Order>>(orders))
+                {
+                    String order_str = (order.type == 0 ? "Buy" : "Sell") + " - ";
+                    order_str += (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
+                    order_str += order.quantity;
+
+                    lstOrders.Items.Add(new ListViewItem(order_str));
+
+                }
 
         }
     }
