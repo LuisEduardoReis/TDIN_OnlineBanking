@@ -49,11 +49,11 @@ namespace BankingDepartment
 
         private void NewOrder(Order order)
         {
-            //order.create(db_conn);
+            order.create(db_conn);
 
-            /*BeginInvoke((Action)(() => {
+            BeginInvoke((Action)(() => {
                 RefreshView();
-            }));*/
+            }));
         }
 
         private void RefreshView()
