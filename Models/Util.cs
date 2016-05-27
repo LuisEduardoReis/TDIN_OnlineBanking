@@ -36,34 +36,21 @@ namespace Models
 
         public static string PostRequest(string url, string body)
         {
-            try
+            using (WebClient client = new WebClient())
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.AutomaticDecompression = DecompressionMethods.GZip;
-
-                byte[] byteArray = Encoding.UTF8.GetBytes(body);
-
-                request.Method = "POST";
-                request.ContentType = "application/json";
-                request.ContentLength = byteArray.Length;
-
-                Stream dataStream = request.GetRequestStream();
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Close();
-
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-
-                if (response.StatusCode.Equals(HttpStatusCode.OK))
+                try
                 {
-                    return reader.ReadToEnd();
-                }
-            }
-            catch (WebException e) {
-                Console.WriteLine(e.ToString());
-            }
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    byte[] response =
+                    client.UploadData(url, "POST", Encoding.UTF8.GetBytes(body));
 
-            return null;
+                    return Encoding.UTF8.GetString(response);
+                }
+                catch (WebException ex) {
+                    Console.WriteLine(ex.ToString());
+                    return null;
+                }               
+            }
         }
 
         public static void SendMail(string to, string subject, string body) {

@@ -55,9 +55,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 268);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 13);
+            this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Valor da cotação";
+            this.label1.Text = "Stock Value";
             // 
             // button1
             // 
@@ -65,7 +65,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Executar";
+            this.button1.Text = "Execute";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -79,7 +79,7 @@
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.orderViewListBox);
             this.Name = "BankingDepartmentForm";
-            this.Text = "Form1";
+            this.Text = "Banking Department";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -12,13 +12,13 @@ using Newtonsoft.Json;
 
 namespace Counter
 {
-    public partial class Form1 : Form
+    public partial class CounterForm : Form
     {
         int current_user;
         string hostUrl;
         Dictionary<long, Company> companies;
 
-        public Form1(string hostUrl)
+        public CounterForm(string hostUrl)
         {
             InitializeComponent();
             this.hostUrl = hostUrl;
@@ -88,7 +88,7 @@ namespace Counter
 
             Util.PostRequest(hostUrl + "/orders", post_body);
            
-            //refreshOrdersView();
+            refreshOrdersView();
         }
 
         private void refreshOrdersView()

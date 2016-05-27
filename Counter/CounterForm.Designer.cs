@@ -1,6 +1,6 @@
 ﻿namespace Counter
 {
-    partial class Form1
+    partial class CounterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -148,7 +148,7 @@
             this.btnChangeUser.Name = "btnChangeUser";
             this.btnChangeUser.Size = new System.Drawing.Size(75, 20);
             this.btnChangeUser.TabIndex = 11;
-            this.btnChangeUser.Text = "Go!";
+            this.btnChangeUser.Text = "Go";
             this.btnChangeUser.UseVisualStyleBackColor = true;
             this.btnChangeUser.Click += new System.EventHandler(this.btnChangeUser_Click);
             // 
@@ -170,7 +170,7 @@
             this.refreshBtn.UseVisualStyleBackColor = true;
             this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
-            // Form1
+            // CounterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -189,7 +189,7 @@
             this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "CounterForm";
             this.Text = "Counter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
