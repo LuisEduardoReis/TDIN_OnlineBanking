@@ -104,6 +104,7 @@ namespace Counter
                     String order_str = (order.type == 0 ? "Buy" : "Sell") + " - ";
                     order_str += (companies.ContainsKey(order.company) ? companies[order.company].name : order.company + "") + " - ";
                     order_str += order.quantity;
+                    if (order.executed) order_str += " - executed";
 
                     lstOrders.Items.Add(new ListViewItem(order_str));
 

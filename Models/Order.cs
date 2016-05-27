@@ -73,15 +73,40 @@ namespace Models
             command.Parameters.AddWithValue("@share_value", share_value);
             command.Parameters.AddWithValue("@total_value",total_value);
 
+            command.ExecuteNonQuery();
+
+            // Get id
+            SQLiteCommand command_rowid = new SQLiteCommand("SELECT last_insert_rowid() as ROWID;", conn);
+            SQLiteDataReader reader = command_rowid.ExecuteReader();
+            this.id = (long) reader["ROWID"];
+            conn.Close();
+        }
+
+        public void createWithId(SQLiteConnection conn)
+        {
+            if (conn.State != System.Data.ConnectionState.Open) conn.Open();
+            SQLiteCommand command = new SQLiteCommand("INSERT INTO Orders(id,client,type,quantity, company,order_date,execution_date,share_value,total_value) " +
+                "VALUES(@id,@client,@type,@quantity, @company,@order_date,@execution_date,@share_value,@total_value)", conn);
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@client", client);
+            command.Parameters.AddWithValue("@type", type);
+            command.Parameters.AddWithValue("@quantity", quantity);
+            command.Parameters.AddWithValue("@company", company);
+            command.Parameters.AddWithValue("@order_date", order_date);
+            command.Parameters.AddWithValue("@execution_date", execution_date);
+            command.Parameters.AddWithValue("@share_value", share_value);
+            command.Parameters.AddWithValue("@total_value", total_value);
             try
             {
                 command.ExecuteNonQuery();
             }
-            catch (SQLiteException ex) {
+            catch (SQLiteException ex)
+            {
                 Console.WriteLine(ex.ToString());
             }
             conn.Close();
         }
+
         public void update(SQLiteConnection conn) {
             if (conn.State != System.Data.ConnectionState.Open) if (conn.State != System.Data.ConnectionState.Open) conn.Open();
             SQLiteCommand command = new SQLiteCommand(

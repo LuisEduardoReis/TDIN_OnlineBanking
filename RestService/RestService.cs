@@ -42,6 +42,7 @@ namespace RestService
             order.share_value = 0;
             order.total_value = 0;
             order.create(db_conn);
+            Console.WriteLine(order.id);
 
             bankingDepartment.newOrder(order);
         }
