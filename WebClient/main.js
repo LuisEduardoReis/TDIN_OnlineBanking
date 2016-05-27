@@ -89,15 +89,3 @@ app.controller('NewOrderCtrl', function ($rootScope, $scope, $routeParams, $http
 		$scope.loadCounter--;
     });
 });
-
-
-
-
-
-$(document).ready(function () {
-    $('.selectpicker').val('2');
-
-    $('#filter-order').on('change', function () {
-        console.log(($this).val());
-    });
-});
