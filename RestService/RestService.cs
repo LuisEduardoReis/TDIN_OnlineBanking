@@ -17,7 +17,6 @@ namespace RestService
         public RestService()
         {
             db_conn = new SQLiteConnection("Data Source=RestServer.db;Version=3;");
-            db_conn.Open();
 
             bankingDepartment = new BankingDepartmentClient();
         }
@@ -26,6 +25,7 @@ namespace RestService
 
         public Orders GetOrders()
         {
+            db_conn.Open();
             Orders orders = new Orders();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
@@ -47,7 +47,8 @@ namespace RestService
         }
 
         public Order GetOrder(string id)
-        {           
+        {
+            db_conn.Open();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders WHERE id = @id", db_conn);
             command.Parameters.AddWithValue("@id", Int32.Parse(id));
 
@@ -60,6 +61,7 @@ namespace RestService
 
         public Orders GetNonExecutedOrders()
         {
+            db_conn.Open();
             Orders orders = new Orders();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Orders WHERE executed=0 ORDER BY order_date DESC", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
@@ -70,6 +72,7 @@ namespace RestService
 
         public Order ExecuteOrder(string order_id, double value)
         {
+            db_conn.Open();
             SQLiteCommand command = new SQLiteCommand(
                 "SELECT Orders.* , Clients.name as 'ClientName', Clients.email as 'ClientEmail', Companies.name as 'CompanyName' "+
                 "FROM(Orders "+
@@ -101,11 +104,12 @@ namespace RestService
         //-------------- USERS -------------------//
 
         public Clients GetClients() {
+            db_conn.Open();
             Clients clients = new Clients();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Clients", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read()) clients.Add(new Client(reader));
             db_conn.Close();
-            while (reader.Read()) clients.Add(new Client(reader));            
 
             setResponseCode(System.Net.HttpStatusCode.OK);
            
@@ -114,6 +118,7 @@ namespace RestService
 
         public Orders GetClientOrders(string client_id, string order_by_date)
         {
+            db_conn.Open();
             Orders orders = new Orders();
 
             string query = "SELECT * FROM Orders WHERE client = @client";
@@ -134,6 +139,7 @@ namespace RestService
 
         public Client GetClient(string id)
         {
+            db_conn.Open();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Clients WHERE id = @id", db_conn);
             command.Parameters.AddWithValue("@id", Int32.Parse(id));
 
@@ -153,6 +159,7 @@ namespace RestService
 
         public Companies GetCompanies()
         {
+            db_conn.Open();
             Companies companies = new Companies();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM Companies", db_conn);
             SQLiteDataReader reader = command.ExecuteReader();

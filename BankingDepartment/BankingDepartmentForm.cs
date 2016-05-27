@@ -43,26 +43,25 @@ namespace BankingDepartment
 
             // DB
             db_conn = new SQLiteConnection("Data Source=BankingDepartment.db;Version=3;");
-            db_conn.Open();
-
 
             RefreshView();
         }
 
         private void NewOrder(Order order)
         {
-            order.create(db_conn);
+            //order.create(db_conn);
 
-            BeginInvoke((Action)(() => {
+            /*BeginInvoke((Action)(() => {
                 RefreshView();
-            }));
+            }));*/
         }
 
         private void RefreshView()
         {
             orderViewListBox.Items.Clear();
-            SQLiteDataReader reader = new SQLiteCommand("SELECT * FROM Orders", db_conn).ExecuteReader();
 
+            db_conn.Open();
+            SQLiteDataReader reader = new SQLiteCommand("SELECT * FROM Orders", db_conn).ExecuteReader();
             while (reader.Read()) {
                 
                 Order order = new Order(reader);
@@ -75,6 +74,7 @@ namespace BankingDepartment
                 orderViewListBox.Items.Add(new DisplayOrder(order.id, order_str));
 
             }
+            db_conn.Close();
 
         }
 

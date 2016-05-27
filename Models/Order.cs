@@ -61,6 +61,7 @@ namespace Models
 
 
         public void create(SQLiteConnection conn) {
+            conn.Open();
             SQLiteCommand command = new SQLiteCommand("INSERT INTO Orders(client,type,quantity, company,order_date,execution_date,share_value,total_value) " + 
                 "VALUES(@client,@type,@quantity, @company,@order_date,@execution_date,@share_value,@total_value)",conn);
             command.Parameters.AddWithValue("@client",client);
@@ -75,13 +76,14 @@ namespace Models
             try
             {
                 command.ExecuteNonQuery();
-                conn.Close();
             }
             catch (SQLiteException ex) {
                 Console.WriteLine(ex.ToString());
             }
+            conn.Close();
         }
         public void update(SQLiteConnection conn) {
+            conn.Open();
             SQLiteCommand command = new SQLiteCommand(
                 "UPDATE Orders SET client=@client, type=@type, quantity=@quantity, company=@company, order_date=@order_date, execution_date=@execution_date, share_value=@share_value, total_value=@total_value, executed=@executed " +
                 "WHERE id=@id", conn);
@@ -101,6 +103,7 @@ namespace Models
         }
 
         public static void delete(SQLiteConnection conn, long id) {
+            conn.Open();
             SQLiteCommand command = new SQLiteCommand("DELETE FROM Orders WHERE id=@id",conn);
             command.Parameters.AddWithValue("@id", id);
             command.ExecuteNonQuery();
