@@ -78,7 +78,7 @@ namespace RestService
                 "FROM(Orders "+
                     "LEFT JOIN Clients ON Orders.client = Clients.id "+
                     "LEFT JOIN Companies ON Orders.company = Companies.id "+
-                ") WHERE Orders.id = 1", db_conn);
+                ") WHERE Orders.id = @id", db_conn);
             command.Parameters.AddWithValue("@id", Int32.Parse(order_id));
 
             SQLiteDataReader reader = command.ExecuteReader();

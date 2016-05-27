@@ -9,6 +9,7 @@
 <table class="table" ng-show="loadCounter<=0">
     <tr>
         <th>Company</th>
+		<th>Type</th>
         <th>Quantity</th>
         <th>Executed</th>
         <th>Execution Date</th>
@@ -18,6 +19,7 @@
     </tr>
     <tr ng-repeat="order in orders">
         <td>{{companies[order.company]}}</td>
+		<td>{{order.type? "Sell" : "Buy"}}</td>
         <td>{{order.quantity}}</td>
         <td>{{order.executed ? "yes" : "no"}}</td>
         <td>{{order.executed ? order.execution_date : "-"}}</td>

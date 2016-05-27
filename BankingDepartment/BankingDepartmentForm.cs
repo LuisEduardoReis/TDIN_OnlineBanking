@@ -84,6 +84,8 @@ namespace BankingDepartment
                 int i = Int32.Parse(txtValue.Text);
             } catch (Exception) { return; }
 
+            MessageBox.Show(((DisplayOrder)orderViewListBox.SelectedItem).Id.ToString());
+
             Console.WriteLine("Sending POST order/{id}/execute");
             Util.PostRequest(hostUrl + "/orders/" + ((DisplayOrder)orderViewListBox.SelectedItem).Id.ToString() + "/execute", 
                 txtValue.Text);
