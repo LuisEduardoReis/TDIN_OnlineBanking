@@ -64,7 +64,6 @@ namespace BankingDepartment
         {
             orders.Add(order.id, order);
             order.createWithId(db_conn);
-            Console.WriteLine("neworder");
 
             BeginInvoke((Action)(() => {
                 RefreshView();
@@ -74,7 +73,6 @@ namespace BankingDepartment
         private void RefreshView()
         {
 
-            Console.WriteLine("refresh");
             orderViewListBox.Items.Clear();
 
             foreach(Order order in orders.Values)
